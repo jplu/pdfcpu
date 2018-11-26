@@ -19,6 +19,7 @@ package api
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -426,8 +427,8 @@ func imageFilenameWithoutExtension(dir, resID string, pageNr, objNr int) string 
 	return filepath.Join(dir, fmt.Sprintf("%s_%d_%d", resID, pageNr, objNr))
 }
 
-func doExtractImages(ctx *pdf.Context, selectedPages pdf.IntSet) error {
-
+func doExtractImages(ctx *pdf.Context, selectedPages pdf.IntSet, isFile bool) ([]byte, error) {
+	var img []byte
 	visited := pdf.IntSet{}
 
 	for pageNr, v := range selectedPages {
@@ -444,20 +445,20 @@ func doExtractImages(ctx *pdf.Context, selectedPages pdf.IntSet) error {
 
 				visited[objNr] = true
 
-				io, err := pdf.ExtractImageData(ctx, objNr)
+				output, err := pdf.ExtractImageData(ctx, objNr)
 				if err != nil {
-					return err
+					return nil, err
 				}
 
-				if io == nil {
+				if output == nil {
 					continue
 				}
 
-				filename := imageFilenameWithoutExtension(ctx.Write.DirName, io.ResourceNames[0], pageNr, objNr)
+				filename := imageFilenameWithoutExtension(ctx.Write.DirName, output.ResourceNames[0], pageNr, objNr)
 
-				_, err = pdf.WriteImage(ctx.XRefTable, filename, io.ImageDict, objNr)
+				_, img, err = pdf.WriteImage(ctx.XRefTable, filename, output.ImageDict, objNr, isFile)
 				if err != nil {
-					return err
+					return nil, err
 				}
 
 			}
@@ -466,7 +467,7 @@ func doExtractImages(ctx *pdf.Context, selectedPages pdf.IntSet) error {
 
 	}
 
-	return nil
+	return img, nil
 }
 
 // ExtractImages dumps embedded image resources from fileIn into dirOut for selected pages.
@@ -496,7 +497,7 @@ func ExtractImages(cmd *Command) ([]string, error) {
 	ensureSelectedPages(ctx, &pages)
 
 	ctx.Write.DirName = dirOut
-	err = doExtractImages(ctx, pages)
+	_, err = doExtractImages(ctx, pages, false)
 	if err != nil {
 		return nil, err
 	}
@@ -507,6 +508,48 @@ func ExtractImages(cmd *Command) ([]string, error) {
 	pdf.TimingStats("write images", durRead, durVal, durOpt, durWrite, durTotal)
 
 	return nil, nil
+}
+
+// ExtractImagesFromIO dumps embedded image from an IO reader into a byte array.
+func ExtractImagesFromIO(file io.Reader) ([]byte, error) {
+	var selectedPages []string
+	config := pdf.NewDefaultConfiguration()
+
+	b, err := ioutil.ReadAll(file)
+	if err != nil {
+		return nil, err
+	}
+
+	var img []byte
+
+	ctx, err := ReadContext(bytes.NewReader(b), "", 0, config)
+	if err != nil {
+		return nil, err
+	}
+
+	err = OptimizeContext(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	for i := 0;i< ctx.PageCount ;i++  {
+		selectedPages = append(selectedPages, strconv.Itoa(i+1))
+	}
+
+	pages, err := pagesForPageSelection(ctx.PageCount, selectedPages)
+	if err != nil {
+		return nil, err
+	}
+
+	ensureSelectedPages(ctx, &pages)
+
+	img, err = doExtractImages(ctx, pages, true)
+	if err != nil {
+		return nil, err
+	}
+
+	return img, nil
 }
 
 func fontObjNrs(ctx *pdf.Context, page int) []int {
