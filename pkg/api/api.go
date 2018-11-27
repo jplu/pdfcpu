@@ -497,7 +497,7 @@ func ExtractImages(cmd *Command) ([]string, error) {
 	ensureSelectedPages(ctx, &pages)
 
 	ctx.Write.DirName = dirOut
-	_, err = doExtractImages(ctx, pages, false)
+	_, err = doExtractImages(ctx, pages, true)
 	if err != nil {
 		return nil, err
 	}
@@ -544,7 +544,7 @@ func ExtractImagesFromIO(file io.Reader) ([]byte, error) {
 
 	ensureSelectedPages(ctx, &pages)
 
-	img, err = doExtractImages(ctx, pages, true)
+	img, err = doExtractImages(ctx, pages, false)
 	if err != nil {
 		return nil, err
 	}
