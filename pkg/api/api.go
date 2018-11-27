@@ -456,7 +456,7 @@ func doExtractImages(ctx *pdf.Context, selectedPages pdf.IntSet, isFile bool) ([
 
 				filename := imageFilenameWithoutExtension(ctx.Write.DirName, output.ResourceNames[0], pageNr, objNr)
 
-				//_, img, err = pdf2.WriteImage(ctx.XRefTable, filename, output.ImageDict, objNr, isFile)
+				_, img, err = pdf.WriteImage(ctx.XRefTable, filename, output.ImageDict, objNr, isFile)
 				if err != nil {
 					return nil, err
 				}
