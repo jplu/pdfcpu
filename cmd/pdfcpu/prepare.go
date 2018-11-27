@@ -22,8 +22,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/hhrutter/pdfcpu/pkg/api"
-	"github.com/hhrutter/pdfcpu/pkg/pdfcpu"
+	"github.com/jplu/pdfcpu/pkg/api"
+	"github.com/jplu/pdfcpu/pkg/pdfcpu"
 )
 
 func prepareValidateCommand(config *pdfcpu.Configuration) *api.Command {

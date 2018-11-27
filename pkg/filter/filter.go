@@ -23,7 +23,7 @@ import (
 	"bytes"
 	"io"
 
-	"github.com/hhrutter/pdfcpu/pkg/log"
+	"github.com/jplu/pdfcpu/pkg/log"
 	"github.com/pkg/errors"
 )
 

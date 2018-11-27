@@ -12,7 +12,7 @@ import (
 	"io"
 	"sort"
 
-	"github.com/hhrutter/pdfcpu/lzw"
+	"github.com/jplu/pdfcpu/lzw"
 )
 
 // The TIFF format allows to choose the order of the different elements freely.

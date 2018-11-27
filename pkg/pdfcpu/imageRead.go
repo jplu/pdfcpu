@@ -22,8 +22,8 @@ import (
 	"image/png"
 	"os"
 
-	"github.com/hhrutter/pdfcpu/pkg/filter"
-	"github.com/hhrutter/pdfcpu/tiff"
+	"github.com/jplu/pdfcpu/pkg/filter"
+	"github.com/jplu/pdfcpu/tiff"
 )
 
 func createSMaskObject(xRefTable *XRefTable, buf []byte, w, h int) (*IndirectRef, error) {
