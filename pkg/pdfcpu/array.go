@@ -21,7 +21,7 @@ import (
 
 	"strings"
 
-	"github.com/jplu/pdfcpu/pkg/log"
+	"github.com/hhrutter/pdfcpu/pkg/log"
 )
 
 // Array represents a PDF array object.

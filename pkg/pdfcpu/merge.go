@@ -17,7 +17,7 @@ limitations under the License.
 package pdfcpu
 
 import (
-	"github.com/jplu/pdfcpu/pkg/log"
+	"github.com/hhrutter/pdfcpu/pkg/log"
 )
 
 func patchIndRef(ir *IndirectRef, lookup map[int]int) {

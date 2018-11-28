@@ -17,7 +17,7 @@ limitations under the License.
 package validate
 
 import (
-	pdf "github.com/jplu/pdfcpu/pkg/pdfcpu"
+	pdf "github.com/hhrutter/pdfcpu/pkg/pdfcpu"
 	"github.com/pkg/errors"
 )
 

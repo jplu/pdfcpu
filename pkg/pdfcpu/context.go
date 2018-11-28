@@ -23,7 +23,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/jplu/pdfcpu/pkg/log"
+	"github.com/hhrutter/pdfcpu/pkg/log"
 )
 
 // Context represents an environment for processing PDF files.

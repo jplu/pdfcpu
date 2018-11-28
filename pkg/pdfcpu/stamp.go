@@ -24,10 +24,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jplu/pdfcpu/pkg/filter"
-	"github.com/jplu/pdfcpu/pkg/fonts/metrics"
-	"github.com/jplu/pdfcpu/pkg/log"
-	"github.com/jplu/pdfcpu/pkg/types"
+	"github.com/hhrutter/pdfcpu/pkg/filter"
+	"github.com/hhrutter/pdfcpu/pkg/fonts/metrics"
+	"github.com/hhrutter/pdfcpu/pkg/log"
+	"github.com/hhrutter/pdfcpu/pkg/types"
 
 	"github.com/pkg/errors"
 )

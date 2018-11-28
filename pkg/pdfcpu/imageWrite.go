@@ -19,9 +19,9 @@ package pdfcpu
 import (
 	"bufio"
 	"bytes"
-	"github.com/jplu/pdfcpu/pkg/filter"
-	"github.com/jplu/pdfcpu/pkg/log"
-	"github.com/jplu/pdfcpu/tiff"
+	"github.com/hhrutter/pdfcpu/pkg/filter"
+	"github.com/hhrutter/pdfcpu/pkg/log"
+	"github.com/hhrutter/pdfcpu/tiff"
 	"github.com/pkg/errors"
 	"image"
 	"image/color"

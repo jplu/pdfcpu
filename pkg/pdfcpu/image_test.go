@@ -24,7 +24,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/jplu/pdfcpu/pkg/filter"
+	"github.com/hhrutter/pdfcpu/pkg/filter"
 )
 
 var inDir, outDir string

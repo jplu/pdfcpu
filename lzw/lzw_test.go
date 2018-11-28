@@ -20,7 +20,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/jplu/pdfcpu/lzw"
+	"github.com/hhrutter/pdfcpu/lzw"
 )
 
 func compareToGolden(t *testing.T, b []byte, fileName string) {

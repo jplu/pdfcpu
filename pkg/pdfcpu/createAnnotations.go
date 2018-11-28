@@ -20,7 +20,7 @@ import (
 	"path"
 	"time"
 
-	"github.com/jplu/pdfcpu/pkg/filter"
+	"github.com/hhrutter/pdfcpu/pkg/filter"
 )
 
 // Functions needed to create a test.pdf that gets used for validation testing (see process_test.go)

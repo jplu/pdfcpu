@@ -66,7 +66,7 @@ One example is reducing the size of large PDF files for mass mailings by optimiz
 
 Required build version: go1.9 and up
 
-`go get github.com/jplu/pdfcpu/cmd/...`
+`go get github.com/hhrutter/pdfcpu/cmd/...`
 
 ## Usage
 

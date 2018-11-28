@@ -17,7 +17,7 @@ limitations under the License.
 package api
 
 import (
-	pdf "github.com/jplu/pdfcpu/pkg/pdfcpu"
+	pdf "github.com/hhrutter/pdfcpu/pkg/pdfcpu"
 	"github.com/pkg/errors"
 )
 
