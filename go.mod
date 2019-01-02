@@ -1,4 +1,4 @@
-replace github.com/hhrutter/pdfcpu => github.com/jplu/pdfcpu v0.1.20-0.20190102153522-49cb0a1aa0e1
+replace github.com/hhrutter/pdfcpu => github.com/jplu/pdfcpu v0.1.21
 
 module github.com/hhrutter/pdfcpu
 
