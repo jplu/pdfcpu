@@ -271,6 +271,36 @@ func logOperationStats(ctx *pdf.Context, op string, durRead, durVal, durOpt, dur
 	ctx.Write.LogStats()
 }
 
+func OptimizeIO(file io.Reader, fileOut string) error {
+	config := pdf.NewDefaultConfiguration()
+
+	b, err := ioutil.ReadAll(file)
+	if err != nil {
+		return err
+	}
+
+	ctx, err := ReadContext(bytes.NewReader(b), "", 0, config)
+	if err != nil {
+		return err
+	}
+
+	err = OptimizeContext(ctx)
+	if err != nil {
+		return err
+	}
+
+	dirName, fileName := filepath.Split(fileOut)
+	ctx.Write.DirName = dirName
+	ctx.Write.FileName = fileName
+
+	err = Write(ctx)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Optimize reads in fileIn, does validation, optimization and writes the result to fileOut.
 func Optimize(cmd *Command) ([]string, error) {
 
@@ -508,6 +538,29 @@ func ExtractImages(cmd *Command) ([]string, error) {
 	pdf.TimingStats("write images", durRead, durVal, durOpt, durWrite, durTotal)
 
 	return nil, nil
+}
+
+func CheckForEncryption(file io.Reader) (bool, error) {
+	config := pdf.NewDefaultConfiguration()
+
+	b, err := ioutil.ReadAll(file)
+	if err != nil {
+		return false, err
+	}
+
+	ctx, err := ReadContext(bytes.NewReader(b), "", 0, config)
+	if err != nil {
+		return false, err
+	}
+
+	ir := ctx.Encrypt
+
+	if ir == nil {
+		// This file is not encrypted.
+		return false, nil
+	}
+
+	return true, nil
 }
 
 // ExtractImagesFromIO dumps embedded image from an IO reader into a byte array.
