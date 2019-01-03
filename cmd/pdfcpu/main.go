@@ -23,9 +23,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hhrutter/pdfcpu/pkg/api"
-	PDFCPULog "github.com/hhrutter/pdfcpu/pkg/log"
-	"github.com/hhrutter/pdfcpu/pkg/pdfcpu"
+	"github.com/jplu/pdfcpu/pkg/api"
+	PDFCPULog "github.com/jplu/pdfcpu/pkg/log"
+	"github.com/jplu/pdfcpu/pkg/pdfcpu"
 )
 
 var (

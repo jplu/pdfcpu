@@ -1,6 +1,6 @@
 # Note
 
-This package is an improved version of golang.org/x/image/tiff. It uses a consolidated version of `compress/lzw` (hosted at: [github.com/hhrutter/pdfcpu/lzw](https://github.com/hhrutter/pdfcpu/lzw)) for compression and also adds support for CMYK.
+This package is an improved version of golang.org/x/image/tiff. It uses a consolidated version of `compress/lzw` (hosted at: [github.com/jplu/pdfcpu/lzw](https://github.com/jplu/pdfcpu/lzw)) for compression and also adds support for CMYK.
 
 ## Background
 
@@ -8,7 +8,7 @@ As stated in this [golang proposal](https://github.com/golang/go/issues/25409) r
 
 In addition with PDF there is a third variant of lzw needed.
 
-`pdfcpu` supports lzw compression for PDF files and hosts a consolidated implementation of lzw at [github.com/hhrutter/pdfcpu/lzw](https://github.com/hhrutter/pdfcpu/lzw) which works for GIF, PDF and TIFF. It not only supports the PDF LZWFilter but also processing PDFs with embedded TIFF images. Therefore it also provides a variant of golang.org/x/image/tiff already leveraging the new consolidated lzw implementation([github.com/hhrutter/pdfcpu/lzw](https://github.com/hhrutter/pdfcpu/lzw)).
+`pdfcpu` supports lzw compression for PDF files and hosts a consolidated implementation of lzw at [github.com/jplu/pdfcpu/lzw](https://github.com/jplu/pdfcpu/lzw) which works for GIF, PDF and TIFF. It not only supports the PDF LZWFilter but also processing PDFs with embedded TIFF images. Therefore it also provides a variant of golang.org/x/image/tiff already leveraging the new consolidated lzw implementation([github.com/jplu/pdfcpu/lzw](https://github.com/jplu/pdfcpu/lzw)).
 
 This implementation provides
 

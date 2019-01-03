@@ -29,9 +29,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hhrutter/pdfcpu/pkg/log"
-	pdf "github.com/hhrutter/pdfcpu/pkg/pdfcpu"
-	"github.com/hhrutter/pdfcpu/pkg/pdfcpu/validate"
+	"github.com/jplu/pdfcpu/pkg/log"
+	pdf "github.com/jplu/pdfcpu/pkg/pdfcpu"
+	"github.com/jplu/pdfcpu/pkg/pdfcpu/validate"
 
 	"github.com/pkg/errors"
 )

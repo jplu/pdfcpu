@@ -18,8 +18,8 @@ limitations under the License.
 package metrics
 
 import (
-	"github.com/hhrutter/pdfcpu/pkg/fonts/metrics/standard"
-	"github.com/hhrutter/pdfcpu/pkg/types"
+	"github.com/jplu/pdfcpu/pkg/fonts/metrics/standard"
+	"github.com/jplu/pdfcpu/pkg/types"
 )
 
 // The PostScript names of 14 Type 1 fonts, known as the standard 14 fonts, are as follows:

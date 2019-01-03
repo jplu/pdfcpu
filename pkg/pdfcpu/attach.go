@@ -21,8 +21,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/hhrutter/pdfcpu/pkg/filter"
-	"github.com/hhrutter/pdfcpu/pkg/log"
+	"github.com/jplu/pdfcpu/pkg/filter"
+	"github.com/jplu/pdfcpu/pkg/log"
 	"github.com/pkg/errors"
 )
 

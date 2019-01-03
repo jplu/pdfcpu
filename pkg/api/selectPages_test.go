@@ -22,7 +22,7 @@ import (
 
 	"strings"
 
-	"github.com/hhrutter/pdfcpu/pkg/pdfcpu"
+	"github.com/jplu/pdfcpu/pkg/pdfcpu"
 )
 
 var r *regexp.Regexp

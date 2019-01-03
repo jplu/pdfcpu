@@ -19,7 +19,7 @@ package api
 import (
 	"fmt"
 
-	"github.com/hhrutter/pdfcpu/pkg/pdfcpu"
+	"github.com/jplu/pdfcpu/pkg/pdfcpu"
 )
 
 func ExampleProcess() {
