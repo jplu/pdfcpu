@@ -273,6 +273,7 @@ func logOperationStats(ctx *pdf.Context, op string, durRead, durVal, durOpt, dur
 
 func OptimizeIO(file io.Reader, fileOut string) error {
 	config := pdf.NewDefaultConfiguration()
+	config.Mode = pdf.DECRYPT
 
 	b, err := ioutil.ReadAll(file)
 	if err != nil {
@@ -305,7 +306,6 @@ func OptimizeIO(file io.Reader, fileOut string) error {
 
 // Optimize reads in fileIn, does validation, optimization and writes the result to fileOut.
 func Optimize(cmd *Command) ([]string, error) {
-
 	fileIn := *cmd.InFile
 	fileOut := *cmd.OutFile
 	config := cmd.Config
