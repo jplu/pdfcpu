@@ -283,7 +283,9 @@ func OptimizeIO(file io.Reader, fileOut string) error {
 	if err != nil {
 		return err
 	}
-
+	if err = validate.XRefTable(ctx.XRefTable); err != nil {
+		return err
+	}
 	err = OptimizeContext(ctx)
 	if err != nil {
 		return err
@@ -538,29 +540,6 @@ func ExtractImages(cmd *Command) ([]string, error) {
 	pdf.TimingStats("write images", durRead, durVal, durOpt, durWrite, durTotal)
 
 	return nil, nil
-}
-
-func CheckForEncryption(file io.Reader) (bool, error) {
-	config := pdf.NewDefaultConfiguration()
-
-	b, err := ioutil.ReadAll(file)
-	if err != nil {
-		return false, err
-	}
-
-	ctx, err := ReadContext(bytes.NewReader(b), "", 0, config)
-	if err != nil {
-		return false, err
-	}
-
-	ir := ctx.Encrypt
-
-	if ir == nil {
-		// This file is not encrypted.
-		return false, nil
-	}
-
-	return true, nil
 }
 
 // ExtractImagesFromIO dumps embedded image from an IO reader into a byte array.
@@ -1054,6 +1033,10 @@ func Encrypt(cmd *Command) ([]string, error) {
 // Decrypt fileIn and write result to fileOut.
 func Decrypt(cmd *Command) ([]string, error) {
 	return Optimize(cmd)
+}
+
+func DecryptIO(file io.Reader, fileOut string) error {
+	return OptimizeIO(file, fileOut)
 }
 
 // ChangeUserPassword of fileIn and write result to fileOut.
