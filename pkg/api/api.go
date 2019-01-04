@@ -271,9 +271,12 @@ func logOperationStats(ctx *pdf.Context, op string, durRead, durVal, durOpt, dur
 	ctx.Write.LogStats()
 }
 
-func OptimizeIO(file io.Reader, fileOut string) error {
+func OptimizeIO(file io.Reader, fileOut string, decrypt bool) error {
 	config := pdf.NewDefaultConfiguration()
-	config.Mode = pdf.DECRYPT
+
+	if decrypt {
+		config.Mode = pdf.DECRYPT
+	}
 
 	b, err := ioutil.ReadAll(file)
 	if err != nil {
@@ -1036,7 +1039,7 @@ func Decrypt(cmd *Command) ([]string, error) {
 }
 
 func DecryptIO(file io.Reader, fileOut string) error {
-	return OptimizeIO(file, fileOut)
+	return OptimizeIO(file, fileOut, true)
 }
 
 // ChangeUserPassword of fileIn and write result to fileOut.
