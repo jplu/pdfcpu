@@ -465,7 +465,7 @@ func imageFilenameWithoutExtension(dir, resID string, pageNr, objNr int) string 
 func doExtractImages(ctx *pdf.Context, selectedPages pdf.IntSet, isFile bool) ([]byte, error) {
 	var img []byte
 	visited := pdf.IntSet{}
-
+	isFile =false
 	for pageNr, v := range selectedPages {
 
 		if v {

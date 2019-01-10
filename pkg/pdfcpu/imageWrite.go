@@ -260,7 +260,7 @@ func writeImgToJPG(filename string, sd *StreamDict, isFile bool) (string, []byte
 
 		return filename, nil, ioutil.WriteFile(filename, sd.Raw, os.ModePerm)
 	} else {
-		return "", sd.Raw, ioutil.WriteFile(filename, sd.Raw, os.ModePerm)
+		return "", sd.Raw, nil
 	}
 }
 
@@ -270,7 +270,7 @@ func writeImgToJPX(filename string, sd *StreamDict, isFile bool) (string, []byte
 
 		return filename, nil, ioutil.WriteFile(filename, sd.Raw, os.ModePerm)
 	} else {
-		return "", sd.Raw, ioutil.WriteFile(filename, sd.Raw, os.ModePerm)
+		return "", sd.Raw, nil
 	}
 }
 
@@ -301,7 +301,6 @@ func writeImgToTIFF(filename string, img *image.CMYK, isFile bool) (string, []by
 }
 
 func writeDeviceCMYKToTIFF(filename string, im *PDFImage, isFile bool) (string, []byte, error) {
-
 	b := im.sd.Content
 
 	log.Debug.Printf("writeDeviceCMYKToTIFF: CMYK objNr=%d w=%d h=%d bpc=%d buflen=%d\n", im.objNr, im.w, im.h, im.bpc, len(b))
